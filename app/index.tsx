@@ -4,13 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as Notifications from 'expo-notifications';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
+import Login from '../components/Login';
+import Cadastro from '../components/Cadastro';
 
 const Stack = createStackNavigator();
 
 const Index = () => {
   useEffect(() => {
     const setupNotifications = async () => {
-      // Configurar canal de notificação para Android (opcional)
       if (Platform.OS === 'android') {
         await Notifications.setNotificationChannelAsync('default', {
           name: 'default',
@@ -18,7 +19,6 @@ const Index = () => {
         });
       }
 
-      // Solicitar permissões
       const { status } = await Notifications.requestPermissionsAsync();
       if (status !== 'granted') {
         console.log('Permission for notifications not granted');
@@ -27,7 +27,6 @@ const Index = () => {
 
     setupNotifications();
 
-    // Inscrever-se para notificações recebidas
     const subscription = Notifications.addNotificationReceivedListener(notification => {
       console.log(notification);
     });
@@ -36,16 +35,28 @@ const Index = () => {
   }, []);
 
   return (
-    <Stack.Navigator initialRouteName="TaskList">
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen 
+        name="Login" 
+        component={Login} 
+        options={{ headerShown: false }} // Oculta o cabeçalho
+      />
+      <Stack.Screen 
+        name="Cadastro" 
+        component={Cadastro} 
+        options={{ headerShown: false }} // Oculta o cabeçalho
+      />
       <Stack.Screen 
         name="TaskList" 
         component={TaskList} 
-        options={{ headerTitle: 'Lista de tarefas' }} // Altere o título aqui
+        options={{ 
+          headerShown: false, // Oculta o cabeçalho
+        }} 
       />
       <Stack.Screen 
         name="TaskForm" 
         component={TaskForm} 
-        options={{ headerTitle: 'Adicionar novas tarefas' }} // E aqui o título para o formulário
+        options={{ headerShown: false }} // Oculta o cabeçalho
       />
     </Stack.Navigator>
   );
