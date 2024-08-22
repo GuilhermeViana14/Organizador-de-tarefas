@@ -76,7 +76,7 @@ const TaskList = ({ navigation, route }: any) => {
     <View style={styles.container}>
       {/* Botão para abrir o menu */}
       <TouchableOpacity onPress={openDrawer} style={styles.menuButton}>
-        <Icon name="menu" size={30} color="#007bff" />
+        <Icon name="menu" size={30} color="#87CEEB" />
       </TouchableOpacity>
       <Text style={styles.title}>Suas Tarefas:</Text>
       {/* Lista de tarefas */}
@@ -109,26 +109,30 @@ const TaskList = ({ navigation, route }: any) => {
           <View style={styles.overlay}>
             <Animated.View style={[styles.drawer, { transform: [{ translateX: drawerAnimation }] }]}>
               {/* Botão de fechar */}
+              <Text style={styles.title2}>Menu:</Text>
               <Pressable onPress={() => setDrawerVisible(false)} style={styles.closeButton}>
-                <Icon name="close" size={30} color="#007bff" />
+                <Icon name="close" size={30} color="#87CEEB"  />
               </Pressable>
-
+            <View style={styles.Button}>
               <Button
                 title="Adicionar tarefa"
                 onPress={() => {
                   setDrawerVisible(false);
                   navigation.navigate('TaskForm', { username, addTask });
                 }}
-                color="#007bff"
+                color="#87CEEB"
               />
-              <Button
+            </View>
+            <View style={styles.exitButton}>
+            <Button
                 title="Sair da conta"
                 onPress={() => {
                   setDrawerVisible(false);
                   navigation.navigate('Login');
                 }}
-                color="#007bff"
+                color="#87CEEB"
               />
+            </View>
             </Animated.View>
           </View>
         </TouchableWithoutFeedback>
@@ -195,6 +199,29 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     top: 55,
   },
+
+  Button:{
+    position: 'absolute',
+    top: 46,
+    left: 12,
+    marginTop: 16,
+    width: '100%',
+  },
+  
+  exitButton:{
+    position: 'absolute',
+    bottom: 16, 
+    left: 12,
+    width: '100%',
+  },
+
+  title2: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'left',
+  },
+
 });
 
 export default TaskList;

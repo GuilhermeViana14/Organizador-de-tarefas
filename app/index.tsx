@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Notifications from 'expo-notifications';
 import TaskList from '../components/TaskList';
@@ -35,30 +35,36 @@ const Index = () => {
   }, []);
 
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen 
-        name="Login" 
-        component={Login} 
-        options={{ headerShown: false }} // Oculta o cabeçalho
+    <>
+      <StatusBar 
+        barStyle="dark-content" 
+        backgroundColor="#87CEEB" // Azul claro
       />
-      <Stack.Screen 
-        name="Cadastro" 
-        component={Cadastro} 
-        options={{ headerShown: false }} // Oculta o cabeçalho
-      />
-      <Stack.Screen 
-        name="TaskList" 
-        component={TaskList} 
-        options={{ 
-          headerShown: false, // Oculta o cabeçalho
-        }} 
-      />
-      <Stack.Screen 
-        name="TaskForm" 
-        component={TaskForm} 
-        options={{ headerShown: false }} // Oculta o cabeçalho
-      />
-    </Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen 
+          name="Login" 
+          component={Login} 
+          options={{ headerShown: false }} // Oculta o cabeçalho
+        />
+        <Stack.Screen 
+          name="Cadastro" 
+          component={Cadastro} 
+          options={{ headerShown: false }} // Oculta o cabeçalho
+        />
+        <Stack.Screen 
+          name="TaskList" 
+          component={TaskList} 
+          options={{ 
+            headerShown: false, // Oculta o cabeçalho
+          }} 
+        />
+        <Stack.Screen 
+          name="TaskForm" 
+          component={TaskForm} 
+          options={{ headerShown: false }} // Oculta o cabeçalho
+        />
+      </Stack.Navigator>
+    </>
   );
 };
 
