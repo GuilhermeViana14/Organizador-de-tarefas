@@ -1,3 +1,5 @@
+rodar o server db.json: json-server --watch db.json --port 3001
+
 Estou utilizando para testes o adroid studio 
 
 
