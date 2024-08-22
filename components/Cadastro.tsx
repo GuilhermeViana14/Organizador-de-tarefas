@@ -41,6 +41,8 @@ const Cadastro = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Cadastre</Text>
+      <Text style={styles.title2}>O seu Usuario</Text>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Icon name="arrow-back" size={24} color="#87CEEB" />
       </TouchableOpacity>
@@ -79,6 +81,19 @@ const styles = StyleSheet.create({
     top: 16,
     left: 16,
     zIndex: 1,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  title2: {
+    fontSize: 25,
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 20,
   },
 });
 
