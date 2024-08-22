@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "username": "user1",
+      "password": "hashedpassword1"
+    },
+    {
+      "id": "106a",
+      "username": "guilherme",
+      "password": "9195d290dd806d1d1e1c9e97dd81a56ce1a81ba4d7c6ff572573f8e7709bfd20"
+    },
+    {
+      "id": "ffd2",
+      "username": "mozi",
+      "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
+    },
+    {
+      "id": "f81c",
+      "username": "vall",
+      "password": "0db4656d6fe25eb9a3be58879e74a29ef7b3409fcb2b905f325bfe073d42480e"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "name": "Task 1",
+      "description": "Description for Task 1",
+      "date": "2024-08-22T00:00:00Z",
+      "time": "2024-08-22T14:00:00Z",
+      "username": "user1"
+    },
+    {
+      "id": "0.5344323966973086",
+      "name": "acad",
+      "description": "perna",
+      "date": "2024-08-22T18:02:21.725Z",
+      "time": "2024-08-22T18:02:21.725Z",
+      "username": "mozi"
+    },
+    {
+      "id": "0.785201969118208",
+      "name": "nubyb",
+      "description": "ubyb",
+      "date": "2024-08-22T18:45:43.235Z",
+      "time": "2024-08-22T18:45:43.235Z",
+      "username": "vall"
+    }
+  ]
+}

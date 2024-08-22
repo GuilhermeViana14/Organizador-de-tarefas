@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, Text, Platform } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
+import axios from 'axios';
 
 const TaskForm = ({ route, navigation }: any) => {
   const [taskName, setTaskName] = useState('');
@@ -10,7 +11,7 @@ const TaskForm = ({ route, navigation }: any) => {
   const [taskTime, setTaskTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const { addTask } = route.params;
+  const { username } = route.params;
 
   const handleDateChange = (event: any, date: Date | undefined) => {
     const selectedDate = date || taskDate;
@@ -30,15 +31,23 @@ const TaskForm = ({ route, navigation }: any) => {
       taskDateTime.setHours(taskTime.getHours());
       taskDateTime.setMinutes(taskTime.getMinutes());
 
-      addTask({
+      const task = {
         id: Math.random().toString(),
         name: taskName,
         description: taskDescription,
-        date: taskDate,
-        time: taskTime,
-      });
+        date: taskDate.toISOString(),
+        time: taskTime.toISOString(),
+        username: username,
+      };
 
-      // Agendar notificação
+      try {
+        await axios.post('http://10.0.2.2:3001/tasks', task);
+        Alert.alert('Sucesso', 'Tarefa adicionada com sucesso');
+        navigation.goBack();
+      } catch (error) {
+        Alert.alert('Erro', 'Não foi possível adicionar a tarefa');
+      }
+
       await Notifications.scheduleNotificationAsync({
         content: {
           title: 'Task Reminder',
@@ -46,10 +55,8 @@ const TaskForm = ({ route, navigation }: any) => {
         },
         trigger: taskDateTime,
       });
-
-      navigation.goBack();
     } else {
-      Alert.alert('Error', 'Task name is required');
+      Alert.alert('Erro', 'O nome da tarefa é obrigatório');
     }
   };
 
@@ -68,8 +75,8 @@ const TaskForm = ({ route, navigation }: any) => {
         onChangeText={setTaskDescription}
       />
       <View style={styles.dateTimeContainer}>
-        <Text>Date:</Text>
-        <Button title="Data" onPress={() => setShowDatePicker(true)} />
+        <Text>Data:</Text>
+        <Button title="Selecionar Data" onPress={() => setShowDatePicker(true)} />
         {showDatePicker && (
           <DateTimePicker
             value={taskDate}
@@ -80,8 +87,8 @@ const TaskForm = ({ route, navigation }: any) => {
         )}
       </View>
       <View style={styles.dateTimeContainer}>
-        <Text>Time:</Text>
-        <Button title="Horas" onPress={() => setShowTimePicker(true)} />
+        <Text>Hora:</Text>
+        <Button title="Selecionar Hora" onPress={() => setShowTimePicker(true)} />
         {showTimePicker && (
           <DateTimePicker
             value={taskTime}
@@ -91,7 +98,7 @@ const TaskForm = ({ route, navigation }: any) => {
           />
         )}
       </View>
-      <Button title="adicionar tarefa" onPress={handleSubmit} />
+      <Button title="Adicionar tarefa" onPress={handleSubmit} />
     </View>
   );
 };
