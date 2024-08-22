@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 import * as CryptoJS from 'crypto-js';
 
@@ -54,11 +54,6 @@ const Cadastro = ({ navigation }: any) => {
         secureTextEntry
       />
       <Button title="Cadastrar" onPress={handleCadastro} />
-      
-      {/* Botão Cancelar */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.cancelButton}>
-        <Text style={styles.cancelButtonText}>Cancelar</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -74,15 +69,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 8,
     marginBottom: 16,
-  },
-  cancelButton: {
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  cancelButtonText: {
-    color: '#007bff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 
