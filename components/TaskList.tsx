@@ -91,7 +91,7 @@ const TaskList = ({ navigation, route }: any) => {
               <Text>Hora: {new Date(item.time).toLocaleTimeString()}</Text>
             </View>
             <TouchableOpacity onPress={() => removeTask(item.id)} style={styles.deleteButton}>
-              <Icon name="delete" size={30} color="gray" />
+              <Icon name="delete" size={30} color="#FF6F6F" />
             </TouchableOpacity>
           </View>
         )}

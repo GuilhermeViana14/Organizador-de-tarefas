@@ -38,30 +38,28 @@ const Index = () => {
     <>
       <StatusBar 
         barStyle="dark-content" 
-        backgroundColor="#87CEEB" // Azul claro
+        backgroundColor="blue" 
       />
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
           name="Login" 
           component={Login} 
-          options={{ headerShown: false }} // Oculta o cabeçalho
+          options={{ headerShown: false }} 
         />
         <Stack.Screen 
           name="Cadastro" 
           component={Cadastro} 
-          options={{ headerShown: false }} // Oculta o cabeçalho
+          options={{ headerShown: false }} 
         />
         <Stack.Screen 
           name="TaskList" 
           component={TaskList} 
-          options={{ 
-            headerShown: false, // Oculta o cabeçalho
-          }} 
+          options={{ headerShown: false }} 
         />
         <Stack.Screen 
           name="TaskForm" 
           component={TaskForm} 
-          options={{ headerShown: false }} // Oculta o cabeçalho
+          options={{ headerShown: false }} 
         />
       </Stack.Navigator>
     </>
