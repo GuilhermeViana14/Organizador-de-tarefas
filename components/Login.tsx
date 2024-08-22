@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, Text, ImageBackground } from 'react-native';
+import axios from 'axios';
+import * as CryptoJS from 'crypto-js';
 
 const Login = ({ navigation }: any) => {
   const [username, setUsername] = useState('');
@@ -7,14 +9,30 @@ const Login = ({ navigation }: any) => {
 
   const handleLogin = async () => {
     try {
-      // Simulação de login
-      // Aqui você deve substituir com sua lógica de autenticação
-      if (username && password) {
+      // Verifica se o nome de usuário e a senha foram preenchidos
+      if (!username || !password) {
+        Alert.alert('Erro', 'Usuário e senha são obrigatórios');
+        return;
+      }
+
+      // Criptografar a senha
+      const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+
+      // Substitua pela URL do seu endpoint de autenticação
+      const apiUrl = 'http://10.0.2.2:3001/users';
+
+      // Envia a requisição de autenticação
+      const response = await axios.get(apiUrl);
+      const users = response.data;
+      const user = users.find((user: any) => user.username === username && user.password === hashedPassword);
+
+      if (user) {
         navigation.navigate('TaskList', { username });
       } else {
-        Alert.alert('Erro', 'Usuário e senha são obrigatórios');
+        Alert.alert('Erro', 'Nome de usuário ou senha inválidos');
       }
     } catch (error) {
+      console.error('Erro ao realizar o login:', error);
       Alert.alert('Erro', 'Não foi possível realizar o login');
     }
   };
@@ -42,13 +60,12 @@ const Login = ({ navigation }: any) => {
         />
         <View style={styles.buttonContainer}>
           <Button title="Login" onPress={handleLogin} color="#007bff" />
-          
         </View>
         <Button
-            title="Cadastre-se"
-            onPress={() => navigation.navigate('Cadastro')}
-            color="#007bff"
-          />
+          title="Cadastre-se"
+          onPress={() => navigation.navigate('Cadastro')}
+          color="#007bff"
+        />
       </View>
     </ImageBackground>
   );
