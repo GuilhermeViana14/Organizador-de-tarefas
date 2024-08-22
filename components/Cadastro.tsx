@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
 import * as CryptoJS from 'crypto-js';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Cadastro = ({ navigation }: any) => {
   const [username, setUsername] = useState('');
@@ -40,6 +41,9 @@ const Cadastro = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={24} color="#87CEEB" />
+      </TouchableOpacity>
       <TextInput
         style={styles.input}
         placeholder="Usuário"
@@ -53,7 +57,7 @@ const Cadastro = ({ navigation }: any) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Cadastrar" onPress={handleCadastro} />
+      <Button color={'#87CEEB'} title="Cadastrar" onPress={handleCadastro} />
     </View>
   );
 };
@@ -69,6 +73,12 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 8,
     marginBottom: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    zIndex: 1,
   },
 });
 

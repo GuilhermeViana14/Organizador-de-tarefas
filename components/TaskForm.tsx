@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, Text, Platform } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, Text, Platform, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Notifications from 'expo-notifications';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const TaskForm = ({ route, navigation }: any) => {
   const [taskName, setTaskName] = useState('');
@@ -62,6 +63,11 @@ const TaskForm = ({ route, navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      {/* Botão para voltar */}
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={30} color="#87CEEB" />
+      </TouchableOpacity>
+
       <TextInput
         style={styles.input}
         placeholder="Nome da tarefa"
@@ -76,7 +82,9 @@ const TaskForm = ({ route, navigation }: any) => {
       />
       <View style={styles.dateTimeContainer}>
         <Text>Data:</Text>
-        <Button title="Selecionar Data" onPress={() => setShowDatePicker(true)} />
+        <TouchableOpacity style={styles.customButton} onPress={() => setShowDatePicker(true)}>
+          <Text style={styles.buttonText}>Selecionar Data</Text>
+        </TouchableOpacity>
         {showDatePicker && (
           <DateTimePicker
             value={taskDate}
@@ -88,7 +96,9 @@ const TaskForm = ({ route, navigation }: any) => {
       </View>
       <View style={styles.dateTimeContainer}>
         <Text>Hora:</Text>
-        <Button title="Selecionar Hora" onPress={() => setShowTimePicker(true)} />
+        <TouchableOpacity style={styles.customButton} onPress={() => setShowTimePicker(true)}>
+          <Text style={styles.buttonText}>Selecionar Hora</Text>
+        </TouchableOpacity>
         {showTimePicker && (
           <DateTimePicker
             value={taskTime}
@@ -98,7 +108,9 @@ const TaskForm = ({ route, navigation }: any) => {
           />
         )}
       </View>
-      <Button title="Adicionar tarefa" onPress={handleSubmit} />
+      <TouchableOpacity style={styles.customButton} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>Adicionar tarefa</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -117,6 +129,23 @@ const styles = StyleSheet.create({
   },
   dateTimeContainer: {
     marginBottom: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    zIndex: 1,
+  },
+  customButton: {
+    backgroundColor: '#87CEEB',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 

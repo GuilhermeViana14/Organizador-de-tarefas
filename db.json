@@ -10,6 +10,7 @@
       "username": "gui",
       "password": "9195d290dd806d1d1e1c9e97dd81a56ce1a81ba4d7c6ff572573f8e7709bfd20"
     }
+
   ],
   "tasks": [
     {
@@ -19,6 +20,14 @@
       "date": "2024-08-22T00:00:00Z",
       "time": "2024-08-22T14:00:00Z",
       "username": "user1"
+    },
+    {
+      "id": "0.06477467425562064",
+      "name": "mijij",
+      "description": "jj",
+      "date": "2024-08-30T20:08:00.000Z",
+      "time": "2024-08-22T20:08:46.084Z",
+      "username": "gui"
     }
   ]
 }

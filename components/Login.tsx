@@ -59,12 +59,12 @@ const Login = ({ navigation }: any) => {
           secureTextEntry
         />
         <View style={styles.buttonContainer}>
-          <Button title="Login" onPress={handleLogin} color="#007bff" />
+          <Button title="Login" onPress={handleLogin} color="#87CEEB" />
         </View>
         <Button
           title="Cadastre-se"
           onPress={() => navigation.navigate('Cadastro')}
-          color="#007bff"
+          color="#87CEEB"
         />
       </View>
     </ImageBackground>
